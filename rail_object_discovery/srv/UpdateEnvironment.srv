@@ -1,0 +1,23 @@
+# Defines a service for updating a motion planning environment with 
+# static and dynamic collision information. 
+
+# Point cloud of static environment.
+sensor_msgs/PointCloud2 static_environment
+
+# Point clouds of objects.
+# Points within these clouds may exist in the static_environment cloud;
+# they will be filtered out as necessary.
+sensor_msgs/PointCloud2[] objects
+
+# Point clouds of surfaces.
+# Points within these clouds may exist in the static_environment cloud;
+# they will be filtered out as necessary.
+sensor_msgs/PointCloud2[] surfaces
+---
+# Responds with a name for each object in the planning environment.
+# Order is maintained between the objects array and object_names.
+rail_object_discovery/NamedPointCloud2[] objects
+
+# Responds with a name for each object in the planning environment.
+# Order is maintained between the objects array and object_names.
+rail_object_discovery/NamedPointCloud2[] surfaces

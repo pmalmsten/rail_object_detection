@@ -1,0 +1,29 @@
+<package>
+  <description brief="rail_pcl_object_segmentation">
+
+     Detects objects from a point cloud using the Euclidian Cluster
+     Extraction method discussed here: http://www.pointclouds.org/documentation/tutorials/cluster_extraction.php.
+
+  </description>
+  <author>Paul Malmsten/pmalmsten@wpi.edu, Richard Kelly/richardk@wpi.edu</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rail_pcl_object_segmentation</url>
+  
+  <!-- Package dependencies -->
+  <depend package="std_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="pcl_ros"/>
+	<depend package="actionlib"/>
+	<depend package="actionlib_msgs"/>
+  
+  <!-- System dependencies -->
+  <rosdep name="gtest" />
+  
+  <!-- Export includes -->
+  <export>
+    <cpp cflags="-I${prefix}/include" />
+  </export>
+</package>
+
+

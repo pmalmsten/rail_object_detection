@@ -1,0 +1,13 @@
+<stack>
+  <description brief="Object and surface detection">
+    These packages provide object and surface detection and measurement for point clouds.
+    They allow one to extract objects from an environment via segmentation and filter them
+    by their size or distance from a robot, and also to discover level surfaces in an
+    environment. 
+  </description>
+  <author>Paul Malmsten &lt;pmalmsten@gmail.com&gt;</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>https://github.com/WPI-RAIL/</url>
+  <depend stack="ros"/>
+</stack>

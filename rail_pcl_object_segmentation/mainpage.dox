@@ -1,0 +1,10 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b rail_pcl_object_segmentation 
+
+Detects objects from a point cloud using the Euclidian Cluster 
+Extraction method discussed here: http://www.pointclouds.org/documentation/tutorials/cluster_extraction.php.
+
+*/

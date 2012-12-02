@@ -1,0 +1,17 @@
+#point cloud with the kinect point cloud
+sensor_msgs/PointCloud2 cloud
+
+# Object filtering constraints
+# Only objects which satisfy these constraints will be returned.
+rail_pcl_object_segmentation/ObjectConstraints constraints
+
+# Plane filtering constraints
+# Only planes which have a slope along the x or y axis no greater than
+# this tolerance will be returned.
+float64 plane_slope_tolerance # Ignored if <= 0
+---
+#the array of pointclouds the segmentation finds
+sensor_msgs/PointCloud2[] clouds
+
+# The array of planes the segmentation finds
+rail_pcl_object_segmentation/DiscoveredPlane[] planes

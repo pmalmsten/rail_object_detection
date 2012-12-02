@@ -1,0 +1,32 @@
+<package>
+  <description brief="rail_object_discovery">
+
+    Provides a service for object discovery.
+    
+    This service:
+        1) Grabs a point cloud from a PointCloud2 topic
+        2) Downsamples the point cloud
+        3) Passes the point cloud to an object detection service, like rail_pcl_object_segmentation
+        4) Calls service to have collision environment updated with static and dynamic objects
+        5) Returns discovered objects as GraspableObjects.
+
+  </description>
+  <author>Paul Malmsten</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rail_object_discovery</url>
+  
+  <!-- Package dependencies -->
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/> <!-- Defines PointCloud2 -->
+  <depend package="arm_navigation_msgs" /> <!-- Defines CollisionObject -->
+  <depend package="object_manipulation_msgs"/> <!-- Defines GraspableObject -->
+  <depend package="pcl_ros"/>
+  <depend package="rail_pcl_object_segmentation" /> <!-- Defines TBD, provides TBD service -->
+  <depend package="geometry_msgs"/> <!--Temporaraliy needed for object_selection-->
+  
+  
+
+</package>
+
+

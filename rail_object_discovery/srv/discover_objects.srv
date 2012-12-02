@@ -1,0 +1,14 @@
+# Contrain the size and distance of returned objects
+rail_pcl_object_segmentation/ObjectConstraints constraints
+
+# Plane filtering constraints
+# Only planes which have a slope along the x or y axis no greater than
+# this tolerance will be returned.
+float64 plane_slope_tolerance # Ignored if <= 0
+---
+
+# The objects discovered
+rail_object_discovery/NamedPointCloud2[] objects
+
+# The surfaces discovered
+rail_object_discovery/NamedPointCloud2[] surfaces

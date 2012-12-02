@@ -1,0 +1,64 @@
+<launch>
+	<!-- Whether we are in simulation or not -->
+	<arg name="simulated" default="false" />
+	
+	<!-- Whether old cloud timestamps should be overwritten with ros::Time::now() or not-->
+	<arg name="update_state_cloud_timestamps" default="false" />
+	
+	<!-- Whether the planning_environment should be updated with discovered objects or not -->
+	<arg name="update_environment" default="true" />
+
+	<!-- Arguments for sensor -->
+	<arg name="sensor_topic" />
+	<arg name="target_frame_id" />
+	
+	<!-- Arguments for static and dynamic inputs to planning_environment -->
+	<arg name="static_env_map_topic" />
+	<arg name="collision_object_topic" />
+	
+	<!-- Run bounding box finder service-->
+	<node pkg="object_manipulator" 
+		  type="cluster_bounding_box_finder_server.py" 
+		  name="bounding_box_finder" />
+		  
+    <!-- Run object detection service -->
+    <node pkg="rail_pcl_object_segmentation"
+		  type="extract_objects_server" 
+		  name="extract_objects_server" />
+		  
+	<!-- Run environment update service -->
+	<node pkg="rail_object_discovery"
+		  type="update_environment_server"
+		  name="update_environment_server"
+		  if="$(arg update_environment)">
+		<param name="~output/filtered_env_cloud_topic_name" value="static_environment_filtered" />
+		<param name="~output/collision_object_topic_name" value="$(arg collision_object_topic)" />
+	</node>
+
+	<!-- Run collision map provider node -->
+	<!-- Don't use; segfaults
+	<node pkg="collider" type="collider_node" name="collider">
+		
+			<param name="cloud_sources" 
+				   value="$(find rail_object_discovery)/launch/config/object_discovery_cloud_source.yaml" 
+				   unless="$(arg simulated)"/>
+		
+			<param name="cloud_sources" 
+				   value="$(find rail_object_discovery)/launch/config/object_discovery_cloud_source_sim.yaml" 
+				   if="$(arg simulated)"/>
+		
+			
+		<remap from="collider_out" to="$(arg static_env_map_topic)" />
+	</node>
+	-->
+
+	<!-- Run object discovery main service -->
+	<node pkg="rail_object_discovery"
+	      type="discover_objects_server" 
+	      name="rail_object_discovery" >
+	    <param name="~update_environment" value="$(arg update_environment)" />
+	    <param name="~update_old_cloud_timestamps" value="$(arg update_state_cloud_timestamps)" />
+		<param name="~sensor_topic" value="$(arg sensor_topic)" /> 
+		<param name="~target_frame_id" value="$(arg target_frame_id)" /> 
+	</node>
+</launch>
