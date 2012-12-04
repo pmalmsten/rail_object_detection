@@ -93,8 +93,8 @@ int main(int argc, char** argv)
   rail::DownsampleCloud<pcl::PointXYZ>(cloud, processed_cloud);
   
   if(inDebugMode) {
-      std::cout << "Writing downsampled cloud as 'input_downsampled_rgb.pcd'" << std::endl;
-      writer.write("input_downsampled_rgb.pcd", *processed_cloud);
+      std::cout << "Writing downsampled cloud as 'input_downsampled.pcd'" << std::endl;
+      writer.write("input_downsampled.pcd", *processed_cloud);
   }
 
   // Remove planes
@@ -103,14 +103,14 @@ int main(int argc, char** argv)
   
   if(inDebugMode) {
       // Dump original w/o planes
-      std::cout << "Writing input without large planes as 'input_minus_planes_rgb.pcd'" << std::endl;
-      writer.write("input_minus_planes_rgb.pcd", *processed_cloud);
+      std::cout << "Writing input without large planes as 'input_minus_planes.pcd'" << std::endl;
+      writer.write("input_minus_planes.pcd", *processed_cloud);
       
       // Dump planes
       unsigned int i = 0;
       for(std::vector<rail::DiscoveredPlanePtr>::iterator it = planes.begin(); it != planes.end(); ++it) {
           std::stringstream fileName;
-          fileName << "extracted_plane_" << i++ << "_rgb.pcd";
+          fileName << "extracted_plane" << i++ << ".pcd";
           
           std::cout << " Writing extracted plane to " << fileName.str() << std::endl;
           writer.write(fileName.str(), (*(*it)).planeCloud);
@@ -130,7 +130,7 @@ int main(int argc, char** argv)
   for (std::vector<pcl::PointCloud<pcl::PointXYZ>::Ptr>::iterator it = objects.begin(); it != objects.end(); ++it)
   {
     std::stringstream fileName;
-    fileName << "object_" << i << "_rgb.pcd";
+    fileName << "object_" << i << ".pcd";
 
     std::cout << "Writing " << fileName.str() << std::endl;
 
