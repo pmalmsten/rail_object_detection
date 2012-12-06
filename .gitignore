@@ -1,0 +1,12 @@
+.cproject
+.project
+.pydevproject
+.svn
+_gtest_from_src
+bin
+build
+lib
+msg_gen
+srv_gen
+rail_object_discovery/src/rail_object_discovery
+rail_pcl_object_segmentation/src/rail_pcl_object_segmentation
