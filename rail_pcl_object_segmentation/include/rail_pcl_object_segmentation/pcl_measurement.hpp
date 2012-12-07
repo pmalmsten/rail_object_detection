@@ -39,7 +39,7 @@
  *********************************************************************/
 
 /*!
- * \file test_helpers.cpp
+ * \file pcl_measurement.hpp
  * \brief Defines common point cloud measurement routines.
  * 
  * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
@@ -50,8 +50,8 @@
 #define _PCL_MEASUREMENT_H
 
 #include <pcl/point_types.h>
+#include <pcl/point_types_conversion.h>
 #include <cmath>
-#include <iostream>
 
 #include "rail_pcl_object_segmentation/common.hpp"
 
@@ -60,7 +60,7 @@ namespace rail
 /*!
  * \brief Averages together the points in a point cloud and returns the resulting point.
  * 
- * \param cloud The point cloud to average.
+ * \param [in] cloud The point cloud to average.
  * \return The averaged point within the cloud.
  */
 template<typename PointT>
@@ -94,8 +94,8 @@ template<typename PointT>
  * such that the sphere contains all of the points in the given
  * point cloud.
  * 
- * \param cloud The point cloud measure.
- * \param center The point at which the center of the bounding sphere should be located.
+ * \param [in] cloud The point cloud measure.
+ * \param [in] center The point at which the center of the bounding sphere should be located.
  * \return The radius of the bounding sphere.
  */
 template<typename PointT>
@@ -119,6 +119,31 @@ template<typename PointT>
 
     return boundingRadius;
   }
+
+
+
+/**
+ * \brief Computes the average hue of a point cloud.
+ *
+ * The hue for a cloud falls within the circular range [0°, 360°)
+ *
+ * \param [in] cloud The cloud to measure.
+ * \return The average hue of all of the points in the cloud; in the circular range 0 - 2pi.
+ */
+double ComputePointCloudAverageHue(pcl::PointCloud<pcl::PointXYZHSV>::ConstPtr cloud);
+
+/**
+ * \brief Computes the average hue of a point cloud.
+ *
+ * The given point cloud of XYZRGB points is converted to a cloud of XYZHSV before
+ * analysis.
+ *
+ * The hue for a cloud falls within the circular range [0°, 360°)
+ *
+ * \param [in] cloud The cloud to measure.
+ * \return The average hue of all of the points in the cloud; in the circular range 0 - 2pi
+ */
+double ComputePointCloudAverageHue(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
 
 #define CUP_MAX_RADIUS 0.15
 #define CUP_MIN_RADIUS 0.01
@@ -151,6 +176,29 @@ template<typename PointT>
     }
   };
 
+
+/**
+ * \brief Determines whether the given point cloud has an average hue within the given bounds.
+ *
+ * The boolean field invert_range determines how the min_hue and max_hue are perceived. By default,
+ * with invert_range = false, the average hue of a point cloud must be greater than or equal to min_hue and
+ * less than or equal to max_hue.
+ *
+ * If invert_range = true, this is inverted; the average hue of a point cloud must
+ * be less than to min_hue or greater than to max_hue.
+ *
+ * The hue for a cloud falls within the circular range between 0 and 2pi (note that 2pi wraps around
+ * to 0).
+ */
+struct is_correct_color : public std::unary_function<pcl::PointCloud<pcl::PointXYZRGB>::Ptr, bool>
+{
+  double min_hue;
+  double max_hue;
+  bool invert_range;
+
+  bool operator() (pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud) const;
+};
+
 /*!
  * \brief Determines whether the given plane is level within a given tolerance.
  * 
@@ -174,33 +222,30 @@ template<typename PointT>
 struct is_level : public std::unary_function<rail::DiscoveredPlanePtr, bool>
 {
   double max_slope;
-  bool operator()(const rail::DiscoveredPlanePtr plane) const
-  {
-    if (fabs(plane->a) > max_slope)
-      return false;
 
-    if (fabs(plane->b) > max_slope)
-      return false;
-
-    return true;
-  }
+  bool operator()(const rail::DiscoveredPlanePtr plane) const;
 };
 
 /**
- * 
+ * \brief Removes point clouds which are not level.
  * 
  * \param [inout] planes The vector of planes to filter in-place.
  * \param [in] max_slope The maximum slope along the x or y axis that
  *  a plane must not exceed.
  */
-void FilterInclinedPlanes(std::vector<rail::DiscoveredPlanePtr>& planes, double max_slope)
-{
-  struct is_level is_plane_level;
-  is_plane_level.max_slope = max_slope;
+void FilterInclinedPlanes(std::vector<rail::DiscoveredPlanePtr>& planes, double max_slope);
 
-  // Remove non-level planes
-  planes.erase(std::remove_if(planes.begin(), planes.end(), std::not1(is_plane_level)), planes.end());
-}
+/**
+ * \brief Removes point clouds with a hue that does not fall within the correct range.
+ *
+ * \param [inout] pointClouds The vector of point clouds to filer in-place.
+ * \param [in] min_hue The minimum hue value that a cloud may present.
+ * \param [in] max_hue The maximum hue value that a cloud may present.
+ * \param [in] invert_range When false, only clouds with an average hue in the specified range are returned. If false, only
+ *  only clouds with an average hue outside of the specified range are returned.
+ */
+void FilterWrongColor(std::vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr >& pointClouds, double min_hue, double max_hue, bool invert_range);
+
 }
 
 #endif

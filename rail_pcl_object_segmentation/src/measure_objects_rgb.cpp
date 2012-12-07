@@ -91,9 +91,11 @@ int main(int argc, char** argv)
     // Measure
     pcl::PointXYZRGB center = rail::AveragePointCloudToPoint<pcl::PointXYZRGB>(cloud);
     double sphereRadius = rail::ComputePointCloudBoundingRadiusFromPoint<pcl::PointXYZRGB>(cloud, center);
+    double averageHue = rail::ComputePointCloudAverageHue(cloud);
 
     std::cout << " Center (x,y,z): " << center << std::endl;
     std::cout << " Bounding sphere radius: " << sphereRadius << std::endl;
+    std::cout << " Average hue: " << averageHue << std::endl;
   }
 
   return 0;

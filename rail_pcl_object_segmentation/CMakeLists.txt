@@ -40,30 +40,19 @@ target_link_libraries(test_real  gtest_main) # Link test_real against gtest_main
 rosbuild_add_gtest(test_helpers test/test_helpers.cpp)
 target_link_libraries(test_helpers  gtest_main) # Link test_helpers against gtest_main
 
-# Commented out SegmentationViewer due to awkward library requirements
+# Add measure objects library
+rosbuild_add_library(pcl_measurement src/pcl_measurement.cpp)
 
-#add viewSegmentation executable
-#include_directories("/usr/include/vtk-5.8")
-
-#rosbuild_add_executable(SegmentationViewer src/ViewSegmentation.cpp)
-#target_link_libraries (SegmentationViewer ${PCL_LIBRARIES} libvtkCommon.so libvtkFiltering.so libvtkRendering.so )
-
-# Add extract_objects executable
+# Add extract_objects executables
 rosbuild_add_executable(extract_objects src/extract_objects.cpp)
-#target_link_libraries(extract_objects ${PCL_LIBRARIES} )
-
-# Add extract_objects rgb executable
 rosbuild_add_executable(extract_objects_rgb src/extract_objects_rgb.cpp)
-#target_link_libraries(extract_objects_rgb ${PCL_LIBRARIES} )
 
-# Add measure_objects executable
+# Add measure_objects executables
 rosbuild_add_executable(measure_objects src/measure_objects.cpp)
-#target_link_libraries(measure_objects ${PCL_LIBRARIES} )
-
 rosbuild_add_executable(measure_objects_rgb src/measure_objects_rgb.cpp)
-#target_link_libraries(measure_objects_rgb ${PCL_LIBRARIES} )
+target_link_libraries(measure_objects_rgb pcl_measurement)
 
 #Add extract_objects server
 rosbuild_add_executable(extract_objects_server src/extract_objects_srv.cpp)
-#target_link_libraries(extract_objects_server ${PCL_LIBRARIES} )
+target_link_libraries(extract_objects_server pcl_measurement)
 
