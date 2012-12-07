@@ -2,6 +2,7 @@
 .project
 .pydevproject
 .svn
+.settings
 _gtest_from_src
 bin
 build
