@@ -8,6 +8,6 @@
   <author>Paul Malmsten &lt;pmalmsten@gmail.com&gt;</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
-  <url>https://github.com/WPI-RAIL/</url>
+  <url>http://ros.org/wiki/rail_object_detection</url>
   <depend stack="ros"/>
 </stack>
