@@ -79,46 +79,12 @@ bool add_cloud_bounding_box_to_collision_environment(const rail_object_discovery
 bool update_environment_callback(rail_object_discovery::UpdateEnvironment::Request& request,
                                  rail_object_discovery::UpdateEnvironment::Response& response)
 {
-
-  /* Warning: causes segfault, at line 92 */
-#if 0
-  // Convert static environment point cloud to PCL
-  pcl::PointCloud< pcl::PointXYZRGB >::Ptr static_environment(new pcl::PointCloud< pcl::PointXYZRGB >());
-  pcl::fromROSMsg(request.static_environment, *static_environment);
-
-  ROS_INFO("Filtering object points out of point cloud...");
-  // Filter object clouds out of point clouds
-  pcl::ExtractIndices<pcl::PointXYZRGB> extract;
-  for(std::vector< sensor_msgs::PointCloud2 >::iterator it = request.objects.begin(); it != request.objects.end(); ++it)
-  {
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr static_environment_filtered(new pcl::PointCloud< pcl::PointXYZRGB >());
-
-    // Convert static environment point cloud to PCL
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr object(new pcl::PointCloud< pcl::PointXYZRGB >());
-    pcl::fromROSMsg(*it, *object);
-
-    // Determine indices
-    pcl::IndicesPtr common_indices(new std::vector< int >());
-    pcl::getApproximateIndices<pcl::PointXYZRGB>(
-        object,
-        static_environment_filtered,
-        *common_indices);
-
-    // Filter
-    extract.setInputCloud(static_environment);
-    extract.setIndices(common_indices);
-    extract.filter(*static_environment_filtered);
-
-    // Update environment cloud to be filtered
-    static_environment.swap(static_environment_filtered);
-  }
-
-  // Convert and publish result
-  sensor_msgs::PointCloud2 filtered_static_environment;
-  pcl::toROSMsg(*static_environment, filtered_static_environment);
-  static_environment_publisher.publish(filtered_static_environment);
-  ROS_INFO("Filtering complete; filtered cloud published.");
-#endif
+  // TODO: Filter objects out of original point cloud and publish result for static collision avoidance.
+  // The intent is that the environment minus all of the discovered objects would be processed by
+  // a package like collider (http://www.ros.org/wiki/collider) such that a static collision message
+  // suitable for use by the planning_environment (http://www.ros.org/wiki/planning_environment) would be available.
+  // This would allow a robot's arm to dodge static obstacles. Collider seemed to segfault frequently for
+  // me; perhaps another package would work better.
 
   // Clear all collision objects
   ROS_INFO("Clearing all existing objects in planning environment.");
