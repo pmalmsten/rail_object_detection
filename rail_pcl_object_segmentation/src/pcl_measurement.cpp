@@ -1,11 +1,3 @@
-/*!
- * \file pcl_measurement.cpp
- * \brief Defines common point cloud measurement routines.
- *
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
- * \date Dec 6, 2012
- */
-
 #include <cmath>
 #include "rail_pcl_object_segmentation/pcl_measurement.hpp"
 
