@@ -19,10 +19,10 @@
 #include <std_msgs/String.h>
 #include <pcl_ros/transforms.h>
 
-#include <rail_pcl_object_segmentation/extract_objects.h>
+#include <rail_pcl_object_segmentation/ExtractObjects.h>
 #include <rail_pcl_object_segmentation/ObjectConstraints.h>
 
-#include "rail_object_discovery/discover_objects.h"
+#include "rail_object_discovery/DiscoverObjects.h"
 #include "rail_object_discovery/UpdateEnvironment.h"
 
 #define TF_BUFFER_DURATION_SECS 10
@@ -32,8 +32,8 @@ bool update_cloud_timestamp_if_too_old, should_update_enviroment;
 
 tf::TransformListener* tf_listener;
 
-bool discover_objects_callback(rail_object_discovery::discover_objects::Request &req,
-                               rail_object_discovery::discover_objects::Response &res)
+bool discover_objects_callback(rail_object_discovery::DiscoverObjects::Request &req,
+                               rail_object_discovery::DiscoverObjects::Response &res)
 {
   ros::Duration ten_seconds(10.0);
 
@@ -93,10 +93,10 @@ bool discover_objects_callback(rail_object_discovery::discover_objects::Request 
   //call extract objects server
   ros::NodeHandle n;
 
-  ros::ServiceClient client = n.serviceClient<rail_pcl_object_segmentation::extract_objects>(
+  ros::ServiceClient client = n.serviceClient<rail_pcl_object_segmentation::ExtractObjects>(
       extract_objects_service_name);
 
-  rail_pcl_object_segmentation::extract_objects extract_srv;
+  rail_pcl_object_segmentation::ExtractObjects extract_srv;
 
   extract_srv.request.cloud = transformedCloud;
   extract_srv.request.constraints = req.constraints;

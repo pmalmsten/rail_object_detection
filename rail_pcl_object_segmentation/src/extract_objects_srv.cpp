@@ -7,7 +7,7 @@
  */
 
 #include "ros/ros.h"
-#include "rail_pcl_object_segmentation/extract_objects.h"
+#include "rail_pcl_object_segmentation/ExtractObjects.h"
 #include "rail_pcl_object_segmentation/pcl_measurement.hpp"
 #include <vector>
 #include <math.h>
@@ -65,8 +65,8 @@ struct object_filter : public std::unary_function<pcl::PointCloud<pcl::PointXYZR
   }
 };
 
-bool extract(rail_pcl_object_segmentation::extract_objects::Request &req,
-             rail_pcl_object_segmentation::extract_objects::Response &res)
+bool extract(rail_pcl_object_segmentation::ExtractObjects::Request &req,
+             rail_pcl_object_segmentation::ExtractObjects::Response &res)
 {
   //convert to pcl pointcloud
   pcl::PointCloud<pcl::PointXYZRGB>::Ptr pclCloud(new pcl::PointCloud<pcl::PointXYZRGB>());

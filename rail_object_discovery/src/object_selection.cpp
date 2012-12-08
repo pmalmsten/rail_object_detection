@@ -28,7 +28,7 @@
 #include <object_manipulation_msgs/PickupGoal.h>
 #include <object_manipulation_msgs/GraspableObject.h>
 
-#include "rail_object_discovery/discover_objects.h" 
+#include "rail_object_discovery/DiscoverObjects.h"
 #include "rail_pcl_object_segmentation/pcl_measurement.hpp"
 
 #include "rail_object_discovery/NamedPointCloud2.h"
@@ -39,14 +39,14 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "object_selection");
   ros::NodeHandle n;
-  ros::ServiceClient client = n.serviceClient<rail_object_discovery::discover_objects>("discover_objects");
+  ros::ServiceClient client = n.serviceClient<rail_object_discovery::DiscoverObjects>("discover_objects");
   ros::Publisher point_pub = n.advertise<geometry_msgs::Point>("poke_cup_point", 1000);
   if (!client.waitForExistence(ros::Duration(3.0)))
   {
     ROS_ERROR("Service 'discover_objects' does not exist.");
     return 1;
   }
-  rail_object_discovery::discover_objects srv;
+  rail_object_discovery::DiscoverObjects srv;
 
   // Set object filter parameters
   srv.request.constraints.object_min_sensor_range = 0.4; // meters

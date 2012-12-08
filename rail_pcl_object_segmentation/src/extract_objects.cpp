@@ -1,5 +1,5 @@
 /*!
- * \file extract_objects.cpp
+ * \file ExtractObjects.cpp
  * \brief Given a .pcd file, this program extracts all objects and saves \
  *  them as separate object_*.pcd files in the working directory. 
  * 
@@ -16,7 +16,7 @@
 #include "rail_pcl_object_segmentation/pcl_segmenter.hpp"
 
 /*!
- * \brief Main function for extract_objects executable.
+ * \brief Main function for ExtractObjects executable.
  * 
  * Reads the specified .pcd file, extracts all objects from it, and
  * saves them as separate .pcd files in the current working directory.
@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 {
   if (argc < 2)
   {
-    std::cerr << "Usage: extract_objects [options] path/to/input.pcd" << std::endl;
+    std::cerr << "Usage: ExtractObjects [options] path/to/input.pcd" << std::endl;
     std::cerr << " Options:" << std::endl;
     std::cerr << "   --debug            Saves all intermediate point clouds to disk, including" << std::endl;
     std::cerr << "                      the original minus planes and each extracted plane" << std::endl;
