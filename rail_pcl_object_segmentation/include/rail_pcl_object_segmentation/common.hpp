@@ -5,7 +5,7 @@
  * \file common.hpp
  * \brief Header file for common definitions.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Nov 28, 2012
  */
 

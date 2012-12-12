@@ -3,7 +3,7 @@
  * \brief Tests functionality of pcl_segmenter.hpp against real point\
  *  clouds taken from a kinect.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 17, 2012
  */
 

@@ -4,7 +4,7 @@
  *  extracts all objects and saves them as separate object_*.pcd files\
  *  in the working directory. 
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 18, 2012
  */
 

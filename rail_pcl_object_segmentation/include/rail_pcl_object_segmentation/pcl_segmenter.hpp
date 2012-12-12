@@ -9,7 +9,7 @@
  * This code is derived from the PCL example listed here:
  * http://www.pointclouds.org/documentation/tutorials/cluster_extraction.php#cluster-extraction
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 17, 2012
  */
 

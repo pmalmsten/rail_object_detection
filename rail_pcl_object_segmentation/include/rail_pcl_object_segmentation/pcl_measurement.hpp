@@ -2,7 +2,7 @@
  * \file pcl_measurement.hpp
  * \brief Defines common point cloud measurement routines.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 21, 2012
  */
 

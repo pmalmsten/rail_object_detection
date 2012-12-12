@@ -9,7 +9,7 @@
  *  4) (Optional) The UpdateEnvironment service is called with the discovered objects and surfaces.
  *  5) The resulting planes and surfaces are returned.
  *
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Nov 30, 2012
  */
 

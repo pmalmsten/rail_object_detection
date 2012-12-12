@@ -2,7 +2,7 @@
  * \file extract_objects_srv.cpp
  * \brief Provides a ROS service for extracting objects and surfaces from a given point cloud.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Nov 27, 2012
  */
 

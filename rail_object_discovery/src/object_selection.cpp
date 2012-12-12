@@ -7,7 +7,7 @@
  *   2) The first resulting object is measured to determine its maximum height
  *   3) The topmost middle point of the object is published to the poke cup topic.
  *
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Nov 30, 2012
  */
 

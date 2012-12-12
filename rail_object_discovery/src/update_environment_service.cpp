@@ -8,7 +8,7 @@
  *  3) The planning_environment is informed of each object.
  *  4) The collision map is provided with a filtered static environment point cloud for processing.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 21, 2012
  */
 

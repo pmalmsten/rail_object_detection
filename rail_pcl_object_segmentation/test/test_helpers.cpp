@@ -2,7 +2,7 @@
  * \file test_helpers.cpp
  * \brief Tests functionality of helper functions defined in pcl_segmentation.cpp
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 17, 2012
  */
 

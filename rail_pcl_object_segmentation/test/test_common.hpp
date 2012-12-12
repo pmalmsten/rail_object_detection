@@ -2,7 +2,7 @@
  * \file test_helpers.cpp
  * \brief Defines common routines used by the automated tests.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 17, 2012
  */
 

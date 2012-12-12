@@ -5,7 +5,7 @@
     by their size or distance from a robot, and also to discover level surfaces in an
     environment. 
   </description>
-  <author>Paul Malmsten &lt;pmalmsten@gmail.com&gt;</author>
+  <author>Paul Malmsten/pmalmsten@gmail.com</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/rail_object_detection</url>

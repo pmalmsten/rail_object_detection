@@ -2,7 +2,7 @@
  * \file test_sim.cpp
  * \brief Tests functionality of pcl_segmenter.cpp
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 17, 2012
  */
 

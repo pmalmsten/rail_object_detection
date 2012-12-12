@@ -4,7 +4,7 @@
  * 	this program measures the center location and size of each and\
  *  prints the results to the console.
  * 
- * \author Paul Malmsten, WPI - pmalmsten@wpi.edu
+ * \author Paul Malmsten, WPI - pmalmsten@gmail.com
  * \date Sep 18, 2012
  */
 

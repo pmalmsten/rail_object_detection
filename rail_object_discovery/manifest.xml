@@ -11,7 +11,7 @@
         5) Returns discovered objects as GraspableObjects.
 
   </description>
-  <author>Paul Malmsten</author>
+  <author>Paul Malmsten/pmalmsten@gmail.com</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/rail_object_discovery</url>
