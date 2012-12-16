@@ -1,7 +1,4 @@
 <launch>
-	<!-- Whether we are in simulation or not -->
-	<arg name="simulated" default="false" />
-	
 	<!-- Whether old cloud timestamps should be overwritten with ros::Time::now() or not-->
 	<arg name="update_state_cloud_timestamps" default="false" />
 	
@@ -12,8 +9,7 @@
 	<arg name="sensor_topic" />
 	<arg name="target_frame_id" />
 	
-	<!-- Arguments for static and dynamic inputs to planning_environment -->
-	<arg name="static_env_map_topic" />
+	<!-- Argument for dynamic inputs to planning_environment -->
 	<arg name="collision_object_topic" />
 	
 	<!-- Run bounding box finder service-->
@@ -34,23 +30,6 @@
 		<param name="~output/filtered_env_cloud_topic_name" value="static_environment_filtered" />
 		<param name="~output/collision_object_topic_name" value="$(arg collision_object_topic)" />
 	</node>
-
-	<!-- Run collision map provider node -->
-	<!-- Don't use; segfaults
-	<node pkg="collider" type="collider_node" name="collider">
-		
-			<param name="cloud_sources" 
-				   value="$(find rail_object_discovery)/launch/config/object_discovery_cloud_source.yaml" 
-				   unless="$(arg simulated)"/>
-		
-			<param name="cloud_sources" 
-				   value="$(find rail_object_discovery)/launch/config/object_discovery_cloud_source_sim.yaml" 
-				   if="$(arg simulated)"/>
-		
-			
-		<remap from="collider_out" to="$(arg static_env_map_topic)" />
-	</node>
-	-->
 
 	<!-- Run object discovery main service -->
 	<node pkg="rail_object_discovery"

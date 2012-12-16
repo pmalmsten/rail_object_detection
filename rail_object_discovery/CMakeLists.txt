@@ -31,5 +31,4 @@ rosbuild_gensrv()
 
 rosbuild_add_executable(update_environment_server src/update_environment_service.cpp)
 rosbuild_add_executable(discover_objects_server src/discover_objects_server.cpp)
-rosbuild_add_executable(object_selection src/object_selection.cpp)
 
