@@ -27,10 +27,11 @@ int main(int argc, char** argv)
 {
   if (argc < 2)
   {
-    std::cerr << "Usage: measure_objects path/to/object0.pcd ..." << std::endl;
+    std::cerr << "Usage: measure_objects_rgb path/to/object0.pcd ..." << std::endl;
     std::cerr << " Input files must contain points of type PointXYZRGB." << std::endl;
-    std::cerr << " Each point cloud's average center point and minimum" << std::endl
-        << " bounding sphere's radius will be computed and printed to the console." << std::endl;
+    std::cerr << " Each point cloud's average center point, minimum" << std::endl
+        << " bounding sphere's radius, and average hue will be computed" << std::endl
+        << " and printed to the console." << std::endl;
     return -1;
   }
 

@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 {
   if (argc < 2)
   {
-    std::cerr << "Usage: ExtractObjects [options] path/to/input.pcd" << std::endl;
+    std::cerr << "Usage: extract_objects [options] path/to/input.pcd" << std::endl;
     std::cerr << " Options:" << std::endl;
     std::cerr << "   --debug            Saves all intermediate point clouds to disk, including" << std::endl;
     std::cerr << "                      the original minus planes and each extracted plane" << std::endl;
