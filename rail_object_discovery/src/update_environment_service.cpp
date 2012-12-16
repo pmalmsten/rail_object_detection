@@ -24,7 +24,6 @@
 #include "rail_object_discovery/NamedPointCloud2.h"
 #include "rail_object_discovery/UpdateEnvironment.h"
 
-ros::Publisher static_environment_publisher;
 ros::Publisher collision_object_publisher;
 ros::ServiceClient bounding_box_finder;
 
@@ -147,8 +146,6 @@ int main(int argc, char** argv)
 
   priv.param<std::string>("service_name", serviceName, "update_environment");
   priv.param<std::string>("bounding_box_service_name", boundingBoxServiceName, "find_cluster_bounding_box2");
-  priv.param<std::string>("output/filtered_env_cloud_topic_name", staticEnvironmentTopicName,
-                          "static_environment_filtered");
   priv.param<std::string>("output/collision_object_topic_name", collisionObjectTopicName, "collision_object");
 
   // Configure services and topics
@@ -156,8 +153,6 @@ int main(int argc, char** argv)
   ROS_INFO("Waiting for existence of bounding box service of name '%s'...", boundingBoxServiceName.c_str());
   bounding_box_finder.waitForExistence();
 
-  static_environment_publisher = n.advertise<sensor_msgs::PointCloud2>(staticEnvironmentTopicName, 1000);
-  ROS_INFO("Ready to publish filtered static collision point cloud at name '%s'", staticEnvironmentTopicName.c_str());
   collision_object_publisher = n.advertise<arm_navigation_msgs::CollisionObject>(collisionObjectTopicName, 1000);
   ROS_INFO("Ready to publish collision objects at name '%s'", collisionObjectTopicName.c_str());
 
